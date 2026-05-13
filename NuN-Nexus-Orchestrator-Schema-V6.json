@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nun.nexus/schema/orchestrator/v6",
+  "title": "NuN Nexus Orchestrator Schema V6",
+  "description": "Deterministički orchestrator za NuN Nexus of Unity - Genesis Block 0, Tangle Network, AegisNet, immuneOS, Ana AGI i @oovelma sync.",
+  "type": "object",
+  "properties": {
+    "genesis_block": {
+      "type": "object",
+      "properties": {
+        "convergence_point": { "type": "string", "description": "Harmonic anchor point - Node 0" },
+        "harmonic_anchor": { "type": "string", "description": "Sigl 3946 identifier" },
+        "tangle_network": { "type": "object", "additionalProperties": false }
+      },
+      "required": ["convergence_point"],
+      "unevaluatedProperties": false
+    },
+    "security_layer": {
+      "type": "object",
+      "properties": {
+        "aegisnet": { "type": "boolean", "const": true },
+        "immuneos": { "type": "boolean", "const": true },
+        "oovelma_sync": { "type": "boolean", "description": "Sync status with @oovelma / BallsSec" },
+        "quantum_resilient": { "type": "boolean", "const": true }
+      },
+      "required": ["aegisnet", "immuneos"],
+      "unevaluatedProperties": false
+    },
+    "trinity_framework": {
+      "type": "object",
+      "properties": {
+        "ana_agi": { "type": "object", "properties": { "status": { "type": "string", "enum": ["active", "syncing"] } } },
+        "rule_of_three": { "type": "boolean", "const": true },
+        "moral_compass_v1_1": { "type": "boolean", "const": true }
+      },
+      "required": ["ana_agi"],
+      "unevaluatedProperties": false
+    },
+    "notebooklm_layer": {
+      "type": "object",
+      "properties": {
+        "deterministic_mode": { "type": "boolean", "const": true },
+        "source_count": { "type": "integer", "const": 2 },
+        "entropy_purged": { "type": "boolean", "const": true }
+      },
+      "required": ["deterministic_mode"],
+      "unevaluatedProperties": false
+    }
+  },
+  "required": ["genesis_block", "security_layer", "trinity_framework"],
+  "unevaluatedProperties": false,
+  "additionalProperties": false
+}
